@@ -1,11 +1,43 @@
 $(function () {
   "use strict";
-    amplitude.getInstance().logEvent("Website_Opened", {
-    path: window.location.pathname,
-    referrer: document.referrer || "direct",
-    timestamp: new Date().toISOString(),
-    userAgent: navigator.userAgent
-    });
+    async function logAppOpenedWithLocation() {
+    try {
+        debugger
+      const res = await fetch("https://ipapi.co/json/");
+      const data = await res.json();
+
+      // Log event with IP location
+      amplitude.getInstance().logEvent("App_Opened", {
+        timestamp: new Date().toISOString(),
+        path: window.location.pathname,
+        referrer: document.referrer || "direct",
+        userAgent: navigator.userAgent,
+        location: {
+          ip: data.ip,
+          city: data.city,
+          region: data.region,
+          country: data.country_name,
+          latitude: data.latitude,
+          longitude: data.longitude,
+        },
+      });
+    } catch (err) {
+      console.warn("IP location fetch failed", err);
+
+      // Fallback log without location
+      amplitude.getInstance().logEvent("App_Opened", {
+        timestamp: new Date().toISOString(),
+        path: window.location.pathname,
+        referrer: document.referrer || "direct",
+        userAgent: navigator.userAgent,
+        location: "ip_lookup_failed",
+      });
+    }
+  }
+
+  // Call when app starts
+  logAppOpenedWithLocation();
+
   // ========= Preloader =========
   $(window).on('load', function () {
     $('.preloader').delay(500).fadeOut(500);
