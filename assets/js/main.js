@@ -2,7 +2,6 @@ $(function () {
   "use strict";
     async function logAppOpenedWithLocation() {
     try {
-        debugger
       const res = await fetch("https://ipapi.co/json/");
       const data = await res.json();
 
