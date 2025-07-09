@@ -168,4 +168,41 @@ $(function () {
 
 
   setUserLocation(); // ✅ Run when document ready
+  $('#contact-form').on('submit', function (e) {
+  e.preventDefault(); // Prevent page reload
+
+  const name = $('#name').val().trim();
+  const phone = $('#phone').val().trim();
+  const email = $('#email').val().trim();
+  const country = $('#country option:selected').text();
+  const message = $('#message').val().trim();
+  const latitude = $('#latitude').val();
+  const longitude = $('#longitude').val();
+  const locationMethod = $('#location_method').val();
+
+  if (!name || !phone || !email || country === 'Select Trip') {
+    $('.form-message').text('Please fill in all required fields.').css('color', 'red');
+    return;
+  }
+
+  // Log to Amplitude
+  amplitude.getInstance().logEvent('Form_Submitted', {
+    timestamp: new Date().toISOString(),
+    name,
+    phone,
+    email,
+    selected_trip: country,
+    message: message.length > 100 ? message.substring(0, 100) + '...' : message,
+    location: {
+      latitude,
+      longitude,
+      method: locationMethod,
+    },
+    path: window.location.pathname,
+  });
+
+  // Clear form + show success message
+  $('#contact-form')[0].reset();
+  $('.form-message').text('Thanks! We’ve received your request.').css('color', 'green');
+});
 });

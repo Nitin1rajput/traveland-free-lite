@@ -360,48 +360,65 @@ We connect local travelers with curated destinations, experiences, and influence
                 </div>
             </div> <!-- row -->
             <div class="contact_form">
-                <form action="assets/contact.php" method="POST" id="contact-form">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single_form">
-                                <input type="text" name="name" id="name" placeholder="Name">
-                            </div> <!-- single form -->
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single_form">
-                                <input type="text" name="phone" id="phone" placeholder="Phone">
-                            </div> <!-- single form -->
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single_form">
-                                <input type="email" name="email" id="email" placeholder="Email">
-                            </div> <!-- single form -->
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single_form">
-                                <select id="country" name="country">
-                                    <option value="0" selected disabled>Select Trip</option>
-                                    <option value="1">Himachal</option>
-                                    <option value="2">Leh & Ladakh</option>
-                                    <option value="3">Rajasthan</option>
-                                    <option value="4">Goa</option>
-                                    <option value="5">Kerala</option>
-                                </select>
-                            </div> <!-- single form -->
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="single_form">
-                                <textarea name="message" id="message" placeholder="Message"></textarea>
-                            </div> <!-- single form -->
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="single_form">
-                                <button type="submit" class="main-btn">Send Message</button>
-                            </div> <!-- single form -->
-                        </div>
-                    </div> <!-- row -->
-                    <p class="form-message pt-30"></p>
-                </form>
+                <form id="contact-form">
+  <div class="row">
+    <!-- Name -->
+    <div class="col-lg-6">
+      <div class="single_form">
+        <input type="text" name="name" id="name" placeholder="Name">
+      </div>
+    </div>
+
+    <!-- Phone -->
+    <div class="col-lg-6">
+      <div class="single_form">
+        <input type="text" name="phone" id="phone" placeholder="Phone">
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="col-lg-6">
+      <div class="single_form">
+        <input type="email" name="email" id="email" placeholder="Email">
+      </div>
+    </div>
+
+    <!-- Trip -->
+    <div class="col-lg-6">
+      <div class="single_form">
+        <select id="country" name="country">
+          <option value="0" selected disabled>Select Trip</option>
+          <option value="1">Himachal</option>
+          <option value="2">Leh & Ladakh</option>
+          <option value="3">Rajasthan</option>
+          <option value="4">Goa</option>
+          <option value="5">Kerala</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="col-lg-12">
+      <div class="single_form">
+        <textarea name="message" id="message" placeholder="Message"></textarea>
+      </div>
+    </div>
+
+    <!-- Hidden Location Fields -->
+    <input type="hidden" id="latitude" name="latitude">
+    <input type="hidden" id="longitude" name="longitude">
+    <input type="hidden" id="location_method" name="location_method">
+
+    <!-- Submit Button -->
+    <div class="col-lg-12">
+      <div class="single_form">
+        <button type="submit" class="main-btn">Send Message</button>
+      </div>
+    </div>
+  </div>
+  <p class="form-message pt-30"></p>
+</form>
+
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
